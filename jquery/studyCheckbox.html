@@ -1,0 +1,115 @@
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>jquery获取、设置checkbox值</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+	<script type="text/javascript">
+		$(function(){
+			$("p").click(function(){
+				$(this).hide();
+			});
+			/*
+			$("#cb1button2").click(function(){
+				alert($("#cb1").is(":checked"));
+				alert(document.getElementById("#cb1").checked)
+				// alert($("#cb1").attr("checked"));
+			})*/
+
+			/*$("#cb1button1").click(function(){
+				$("#cb1").attr("checked",true);
+			})*/
+			var hobbies = [];
+			$("input[name='hobby']").click(function(){
+				if(this.checked){
+					hobbies.push($(this).val());
+				}
+				else{
+					var index = hobbies.indexOf($(this).val());
+					if(index != -1)
+						hobbies.splice(index,1);
+				}
+
+				$("#choose").html(hobbies);
+			});
+
+			$("#checkall").click(function(){
+				$("input[name='hobby']").prop("checked",$(this).is(":checked"));
+			})
+		});
+
+		function bt1Click(){
+			//$("#cb1").prop("checked",!$("#cb1").is(":checked"));
+			//$("#cb1").attr("checked",!$("#cb1").is(":checked"));		//设置一次有效
+			//document.getElementById("cb1").checked = !document.getElementById("cb1").checked;
+			//$("#cb1").get(0).checked = !$("#cb1").get(0).checked;
+		}
+
+		function bt2Click(){
+			//alert($("#cb1").is(":checked"));
+			//alert(document.getElementById("cb1").checked);
+			//alert($("#cb1").get(0).checked);
+			alert($("#cb1").attr("checked"));			//undefined
+		}
+
+
+
+	</script>
+	<style type="text/css">
+		h2{
+			text-align:center;
+		    padding-top: 10px;
+		}
+		.main{
+			width:30%;
+			height:70%;
+			margin:0 auto;
+			box-shadow: 0px 0px 8px #999;
+    		border-radius: 5px;
+		}
+		form{
+		    margin: auto 10;
+		}
+	</style>
+</head>
+
+<body>
+	<br><br><br>
+	<div class="main">
+		<form>
+			<h2>jquery获取、设置checkbox值</h2>
+			<hr>
+
+			<div class="form-group">
+				<label>id选择：</label>
+				<input type="checkbox" id="cb1" class="cb1class" />
+				<input type="button" class="btn btn-default" id="cb1button1" onclick="bt1Click()" value="选择/反选" />
+				<input type="button" class="btn btn-default" id="cb1button2" onclick="bt2Click()" value="状态" />
+			</div><hr>
+			<div class="form-group">
+				<label>class选择：</label>
+				<input type="checkbox" id="cb2" class="cb2class" />
+			</div><hr>
+
+			<div class="form-group">
+				<label>爱好：</label>
+				<label>音乐</label><input type="checkbox" name="hobby" value="1" /> 
+				<label>电影</label><input type="checkbox" name="hobby" value="2" /> 
+				<label>运动</label><input type="checkbox" name="hobby" value="3" />&nbsp;&nbsp;&nbsp;
+
+				<label>全选</label><input type="checkbox" id="checkall" /><br><br>
+				<label>您已经选择了:</label><label id="choose"></label>
+			</div>
+		</form>
+
+		<!--  
+			http://blog.csdn.net/hjb2722404/article/details/48176863
+			http://www.jb51.net/article/51136.htm
+		-->
+	</div>
+
+</body>
+
+
+</html>
